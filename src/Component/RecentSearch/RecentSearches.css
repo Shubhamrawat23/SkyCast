@@ -1,0 +1,146 @@
+#mainRecentSearchBox{
+    width: 15rem;
+    height: 35rem;
+    position: absolute;
+    top: 75px;
+    left: 5px;
+}
+
+
+#recentSearchText{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#allSearchesList{
+    margin-top: -15px;
+    height: 30rem;
+    overflow: scroll;
+}
+#allSearchesList::-webkit-scrollbar{
+    display: none;
+}
+
+.searchesCity{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    font-weight: 600;
+    height: 2rem;
+    width: 14rem;
+    margin: 20px 0 0 7px;
+    padding-top: 10px;
+    border-radius: 50px;
+    background-color: rgb(35, 35, 35);
+    color: white;
+    cursor: pointer;
+}
+.searchesCity:hover{
+    transform: scale(105%);
+}
+
+
+
+
+@media screen and (max-width:769px){
+    #mainRecentSearchBox{
+        width: 12rem;
+        height: 28rem;
+    }
+
+    #recentSearchText{
+        font-size: large;
+    }
+
+    #allSearchesList{
+        height: 25rem;
+    }
+
+    .searchesCity{
+        width: 10rem;
+        margin-left: 15px;
+    }
+}
+
+
+
+
+@media screen and (max-width:578px){
+    #mainRecentSearchBox{
+        position: relative;
+        width: 100vw;
+        height: auto;
+        left: 0px;
+    }
+
+    #allSearchesList{
+        height: auto;
+        width: 99vw;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .searchesCity{
+        width: 7rem;
+        font-size: medium;
+        font-weight: 300;
+        margin: 10px 0 0 20px;
+    }
+}
+
+
+
+
+@media screen and (max-width:376px){
+    #mainRecentSearchBox{
+        position: relative;
+        width: 100vw;
+        height: auto;
+        left: 0px;
+        /* top: 400px; */
+    }
+
+    #allSearchesList{
+        height: auto;
+        width: 99vw;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .searchesCity{
+        width: 7rem;
+        font-size: medium;
+        font-weight: 300;
+        margin-left: 10px;
+    }
+}
+
+
+
+
+@media screen and (max-width:321px){
+    #mainRecentSearchBox{
+        position: relative;
+        width: 100vw;
+        height: auto;
+        left: 0px;
+        /* top: 400px; */
+    }
+
+    #allSearchesList{
+        height: auto;
+        width: 99vw;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .searchesCity{
+        width: 7rem;
+        font-size: medium;
+        font-weight: 300;
+        margin-left: 30px;
+    }
+}
