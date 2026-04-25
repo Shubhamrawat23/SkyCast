@@ -20,7 +20,7 @@ export default function SearchInput(){
             <input type="text"
             id="searchInput"
             value={citySearch} 
-            placeholder="Enter City Name" 
+            placeholder="Enter City/Country Name" 
             onChange={(e)=>setCitySearch(e.target.value)}
             className="rounded-lg bg-stone-700 px-4 hover:border text-white"/>
 

@@ -9,13 +9,9 @@
 
 #recentSearchText{
     font-family: 'Courier New', Courier, monospace;
-    font-size: x-large;
-    font-weight: bold;
 }
 
 #allSearchesList{
-    margin-top: -15px;
-    height: 30rem;
     overflow: scroll;
 }
 #allSearchesList::-webkit-scrollbar{
@@ -24,19 +20,6 @@
 
 .searchesCity{
     font-family: 'Courier New', Courier, monospace;
-    font-size: large;
-    font-weight: 600;
-    height: 2rem;
-    width: 14rem;
-    margin: 20px 0 0 7px;
-    padding-top: 10px;
-    border-radius: 50px;
-    background-color: rgb(35, 35, 35);
-    color: white;
-    cursor: pointer;
-}
-.searchesCity:hover{
-    transform: scale(105%);
 }
 
 
@@ -46,10 +29,6 @@
     #mainRecentSearchBox{
         width: 12rem;
         height: 28rem;
-    }
-
-    #recentSearchText{
-        font-size: large;
     }
 
     #allSearchesList{

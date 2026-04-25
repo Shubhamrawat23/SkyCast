@@ -79,10 +79,10 @@ export default function CityWeather() {
                             let date = value.dt_txt.split(' ')
                             dataMap.set(date[0], value.main.temp)
                         })
-    
+
                         nextFiveDays_Data = [...dataMap];
                         console.log(nextFiveDays_Data);
-    
+
                     }
                 }
 
@@ -107,58 +107,132 @@ export default function CityWeather() {
         })
         return (
             <>
-            <div>{week_day}</div>
-            <div>{day}</div>
+                <div>{week_day}</div>
+                <div>{day}</div>
             </>
         )
     }
 
     return (
         weatherData && fiveDaysWeatherData && weatherData.cod === 200 ?
-            <section id="WeatherMain"
-                style={{ backgroundImage: `url(${getWeatherAssets()?.background})`, color: weatherData.weather[0].main === "Clear" ? "rgb(28, 26, 26)" : "rgb(240, 250, 250)" }}>
+            <section id="WeatherMain" className="flex flex-col gap-2.5">
 
-                <h1 id="cityName">{data.cityName && data.cityName}</h1>
+                {/* ── HERO CARD ── */}
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-lg">
+                    {/* Top row */}
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <div className="flex items-center gap-1.5 mb-0.5">
+                                <span className="inline-block w-2 h-2 bg-[#e05a2b] rounded-full flex-shrink-0" />
+                                <h1 className="text-[17px] font-bold text-white tracking-tight">
+                                    {data.cityName}
+                                </h1>
+                            </div>
+                            <p className="text-[11px] text-white/35 ml-3.5">
+                                {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })} · Updated just now
+                            </p>
+                        </div>
+                        <div className="unitBox">
+                            <div
+                                onClick={() => setUnits(units === "metric" ? 'imperial' : 'metric')}
+                                className="flex bg-white/10 rounded-lg overflow-hidden border border-white/15 cursor-pointer select-none"
+                            >
+                                <span className={`px-3 py-1.5 text-xs font-medium transition-all duration-150 ${units !== "metric" ? "bg-white/20 text-white" : "text-white/35"}`}>°F</span>
+                                <span className={`px-3 py-1.5 text-xs font-medium transition-all duration-150 ${units === "metric" ? "bg-white/20 text-white" : "text-white/35"}`}>°C</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <button id="closeBtn" onClick={handleCloseBtn}>X</button>
+                    {/* Mid row */}
+                    <div className="flex items-end justify-between mt-3">
+                        <div className="flex items-start gap-0.5">
+                            <span className="text-[68px] font-bold text-white leading-none tracking-[-3px]">{weatherData.main.temp}</span>
+                            <span className="text-2xl text-white/40 mt-2 font-light">°{units === "metric" ? "C" : "F"}</span>
+                        </div>
+                        <div className="w-20 h-20 rounded-full bg-orange-400/10 border border-orange-400/20 flex items-center justify-center flex-shrink-0">
+                            <img src={getWeatherAssets()?.icon} alt="weatherIcon" className="w-12 h-12 object-contain" />
+                        </div>
+                    </div>
 
-                <div className="unitBox">
-                    <div id="units" onClick={() => setUnits(units === "metric" ? 'imperial' : 'metric')}>{units === "metric" ? `Imperial` : `Metric`}</div>
+                    {/* Bottom */}
+                    <div className="mt-3.5 flex flex-col gap-2">
+                        <div className="flex items-center gap-2.5">
+                            <span className="bg-orange-950/40 border border-orange-600/35 rounded-full px-2.5 py-0.5 text-xs font-medium text-amber-300 capitalize">
+                                {weatherData.weather[0].description}
+                            </span>
+                            <span className="text-[13px] text-white/40">
+                                Feels like <span className="text-white/60">{weatherData.main.feels_like}°{units === "metric" ? "C" : "F"}</span>
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-5 flex-wrap">
+                            <span className="flex items-center gap-1.5 text-[12px] text-white/38">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />{weatherData.main.humidity}% humidity
+                            </span>
+                            <span className="flex items-center gap-1.5 text-[12px] text-white/38">
+                                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 flex-shrink-0" />{weatherData.wind.speed} {units === "metric" ? "m/s" : "mph"}
+                            </span>
+                            <span className="flex items-center gap-1.5 text-[12px] text-white/38">
+                                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 flex-shrink-0" />{weatherData.main.pressure} hPa
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="main_data_container">
+                {/* ── MAIN DATA CONTAINER ── */}
+                <div className="flex flex-col gap-2.5">
 
-                    <div id="weatherDataBox">
-                        <div id="temp">{`Temp: ${weatherData.main.temp}\u00B0${units === "metric" ? `C` : 'F'}`}</div>
-
-                        <div id="weather">{`Weather: ${weatherData.weather[0].main}`} <img id="weatherIcon" src={getWeatherAssets()?.icon} alt="weatherIcon" /></div>
-
-                        <div id="description">{`Weather Desc: ${weatherData.weather[0].description}`}</div>
-
-                        <div>{`Humidity: ${weatherData.main.humidity}%`}</div>
-
-                        <div>{`Wind Speed: ${weatherData.wind.speed} ${units === "metric" ? `meter/sec` : 'miles/hr'}`}</div>
-
-                        <div>{`Atmospheric Pressure: ${weatherData.main.pressure} hPa`}</div>
-
-                        <div>{`Max/Min Temp: ${weatherData.main.temp_max}\u00B0${units === "metric" ? `C` : 'F'}/${weatherData.main.temp_min}\u00B0${units === "metric" ? `C` : 'F'}`}</div>
-
-
+                    {/* ── STAT CARDS ── */}
+                    <div className="grid grid-cols-4 gap-2">
+                        {[
+                            { icon: "💧", color: "bg-blue-500/15", label: "Humidity", value: `${weatherData.main.humidity}%`, sub: weatherData.main.humidity < 30 ? "Very low" : weatherData.main.humidity < 60 ? "Moderate" : "High" },
+                            { icon: "💨", color: "bg-teal-500/15", label: "Wind", value: weatherData.wind.speed, sub: `${units === "metric" ? "m/s" : "mph"} · ${weatherData.wind.speed < 3 ? "Calm" : weatherData.wind.speed < 8 ? "Moderate" : "Strong"}` },
+                            { icon: "🌡️", color: "bg-amber-500/15", label: "Max / Min", value: `${weatherData.main.temp_max}° / ${weatherData.main.temp_min}°`, sub: "Today's range" },
+                            { icon: "🔵", color: "bg-violet-500/15", label: "Pressure", value: weatherData.main.pressure, sub: "hPa · Stable" },
+                        ].map(({ icon, color, label, value, sub }) => (
+                            <div key={label} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5 hover:bg-white/10 hover:border-white/20 transition-all text-left">
+                                <div className={`w-[26px] h-[26px] rounded-lg ${color} flex items-center justify-center text-[13px] mb-2.5`}>{icon}</div>
+                                <div className="text-[10px] font-semibold uppercase tracking-widest text-white/28 mb-1.5">{label}</div>
+                                <div className="text-[19px] font-bold text-white leading-tight">{value}</div>
+                                <div className="text-[11px] text-white/30 mt-1">{sub}</div>
+                            </div>
+                        ))}
                     </div>
-                    <div id="fivedays_weather_conatiner">
-                        {
-                            fiveDaysWeatherData.slice(1).map((entry) => {
-                                return (
-                                    <div className="five_weather_box" key={entry[0]}>
-                                        {call_for_date_day(entry[0])}
-                                        <div>{`${entry[1]}\u00B0${units === "metric" ? `C` : 'F'}`}</div>
+
+                    {/* ── SUNRISE / SUNSET ── */}
+                    <div className="grid grid-cols-2 gap-2">
+                        {[
+                            { icon: "🌅", color: "bg-orange-400/12", label: "Sunrise", time: weatherData.sys?.sunrise, },
+                            { icon: "🌇", color: "bg-indigo-500/12", label: "Sunset", time: weatherData.sys?.sunset, },
+                        ].map(({ icon, color, label, time }) => (
+                            <div key={label} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3.5 flex items-center gap-3">
+                                <div className={`w-8 h-8 rounded-lg ${color} flex items-center justify-center text-base flex-shrink-0`}>{icon}</div>
+                                <div>
+                                    <div className="text-[10px] font-semibold uppercase tracking-widest text-white/28 mb-0.5">{label}</div>
+                                    <div className="text-[15px] font-bold text-white">
+                                        {time ? new Date(time * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : "—"}
                                     </div>
-                                )
-                            })
-                        }
+                                    <div className="text-[11px] text-white/30 mt-0.5">Local time</div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                </div>
 
+                    {/* ── 5-DAY FORECAST ── */}
+                    <div className="grid grid-cols-5 gap-2">
+                        {fiveDaysWeatherData.slice(1).map((entry) => (
+                            <div
+                                key={entry[0]}
+                                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3 text-center hover:bg-white/15 hover:border-white/20 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+                            >
+                                {call_for_date_day(entry[0])}
+                                <div className="text-[15px] font-bold text-white mt-1">
+                                    {`${entry[1]}°${units === "metric" ? "C" : "F"}`}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
             </section> :
             <section id="wrongInputMain">
                 <p>
