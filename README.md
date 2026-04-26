@@ -1,91 +1,181 @@
-**Project Name: React Weather App**
+# SkyCast App ⛅
 
-**Description:**
-
-This is a React application that provides a user-friendly and visually appealing interface to display current weather information for any city. 
-
-**Features:**
-
-* **City Search:** Users can easily search for weather data by entering a city name in the search bar.
-* **Current Weather Details:** The application displays essential weather information for the searched city, including:
-    * Temperature
-    * Humidity
-    * Wind Speed
-    * Atmospheric Pressure
-    * Next 5 Days Temperature
-* **Change The Units:** The application allows users to switch between Imperial and Metric units for displaying temperature and wind speed. This provides flexibility for users with different unit preferences.
-* **Recent Searches:** User gets the history of their city searches in a separate column.
-* **Responsive Design:** The application adapts seamlessly to different screen sizes, ensuring optimal viewing experiences on desktops, tablets, and mobile devices.
+A responsive React weather application built with Create React App and styled using Tailwind CSS.
 
 ---
 
-# Getting Started with Create React App
+## Tech Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+| Category | Technology |
+|---|---|
+| Frontend Framework | React 18.2.0 |
+| Styling | Tailwind CSS 3.4.19 |
+| Bundler | Webpack 5 (via react-scripts 5.0.1) |
+| Language | JavaScript (JSX) |
+| Package Manager | npm |
+| Node Requirement | >= 14.0.0 |
+
+---
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+- **Node.js** >= 14.0.0
+- **npm** >= 6.0.0
+
+---
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repo-url>
+cd weatherapp
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the development server
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
+| Script | Command | Description |
+|---|---|---|
+| Start | `npm start` | Runs the app in development mode with hot reload |
+| Build | `npm build` | Builds the app for production to the `build/` folder |
+| Test | `npm test` | Launches the test runner in interactive watch mode |
+| Eject | `npm run eject` | Ejects from Create React App (irreversible) |
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+weatherapp/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js
+│   ├── index.js
+│   ├── index.css          # Tailwind directives
+│   ├── Component/
+│   │   ├── CityWeather/
+│   │   │   └── CityWeather.js
+│   │   ├── RecentSearch/
+│   │   │   └── RecentSearches.js
+│   │   └── SearchCity/
+│   │       └── SearchInput.js
+│   └── Context/
+│       └── Context.js
+├── tailwind.config.js
+├── postcss.config.js
+├── package.json
+└── README.md
+```
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tailwind CSS Setup
 
-### `npm run build`
+Tailwind is configured alongside PostCSS. The following config files are required:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**`tailwind.config.js`**
+```js
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: { extend: {} },
+  plugins: [],
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**`postcss.config.js`**
+```js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**`src/index.css`**
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Package | Version | Purpose |
+|---|---|---|
+| react | 18.2.0 | Core UI library |
+| react-dom | 18.2.0 | DOM rendering |
+| react-scripts | 5.0.1 | CRA build toolchain |
+| web-vitals | 2.1.4 | Performance metrics |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Dev Dependencies
 
-## Learn More
+| Package | Version | Purpose |
+|---|---|---|
+| tailwindcss | 3.4.19 | Utility-first CSS framework |
+| autoprefixer | 10.4.19 | CSS vendor prefixing |
+| postcss | 8.4.38 | CSS transformation toolchain |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Testing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Package | Version |
+|---|---|
+| @testing-library/jest-dom | 5.17.0 |
+| @testing-library/react | 13.4.0 |
+| @testing-library/user-event | 13.5.0 |
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Browser Support
 
-### Analyzing the Bundle Size
+### Production
+- Browsers with > 0.2% market share
+- Excludes dead browsers
+- Excludes Opera Mini
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Development
+- Latest Chrome
+- Latest Firefox
+- Latest Safari
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Features
 
-### Advanced Configuration
+- 🔍 Search weather by city name
+- 🕘 Recent searches sidebar
+- 🌡️ Toggle between °C and °F units
+- 💧 Humidity, wind speed, pressure stats
+- 🌅 Sunrise / sunset times
+- 📅 5-day weather forecast
+- 📱 Fully responsive (mobile & desktop)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is private and not licensed for public distribution.
