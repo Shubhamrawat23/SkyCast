@@ -23,12 +23,6 @@ export default function CityWeather() {
     const [fiveDaysWeatherData, setfiveDaysWeatherData] = useState(null)
     const [units, setUnits] = useState("metric")
 
-
-    const handleCloseBtn = () => {
-        setWeatherData("")
-        setData({ ...data, cityName: "" })
-    }
-
     const weatherAssets = {
         '01d': { icon: ClearIcon, background: ClearSky },
         '01n': { icon: ClearIcon, background: ClearSky },

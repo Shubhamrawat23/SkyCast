@@ -20,7 +20,7 @@ export default function RecentSearches() {
                                         window.scrollTo({ top: 0, behavior: 'smooth' });
                                     }}
                                     title={value}
-                                    className={`searchesCity cursor-pointer hover:bg-slate-900 hover:font-bold text-white border md:m-2 md:p-2 m-1 p-1 flex justify-center shrink-0 items-center rounded truncate ${data.cityName.toLowerCase() == value ? `border-2 border-[#e05a2b]`:``}`}>
+                                    className={`searchesCity cursor-pointer hover:bg-slate-900 hover:font-bold text-white border md:m-2 md:p-2 m-1 p-1 flex justify-center shrink-0 items-center rounded truncate ${data.cityName.toLowerCase() === value ? `border-2 border-[#e05a2b]`:``}`}>
                                     {value}
                                 </div>
                             ))}
