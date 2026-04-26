@@ -18,7 +18,7 @@ import useWeatherData from '../../Context/Context.js'
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 export default function CityWeather() {
-    const { data, setData } = useWeatherData();
+    const { data } = useWeatherData();
     const [weatherData, setWeatherData] = useState(null)
     const [fiveDaysWeatherData, setfiveDaysWeatherData] = useState(null)
     const [units, setUnits] = useState("metric")
